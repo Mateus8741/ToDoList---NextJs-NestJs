@@ -1,1 +1,4 @@
-export class CreateTodoDto {}
+export class CreateTodoDto {
+  readonly title: string;
+  readonly status: boolean;
+}

@@ -1,23 +1,25 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Req,
 } from '@nestjs/common';
-import { TodoService } from './todo.service';
+import { RequestWithUser } from 'src/auth/RequestWithUser';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
+import { TodoService } from './todo.service';
 
-@Controller('todo')
+@Controller('/todo')
 export class TodoController {
   constructor(private readonly todoService: TodoService) {}
 
   @Post()
-  create(@Body() createTodoDto: CreateTodoDto) {
-    return this.todoService.create(createTodoDto);
+  create(@Body() createTodoDto: CreateTodoDto, @Req() req: RequestWithUser) {
+    return this.todoService.create(createTodoDto, req.user.userId);
   }
 
   @Get()
