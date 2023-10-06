@@ -22,9 +22,9 @@ export class TodoController {
     return this.todoService.create(createTodoDto, req.user.userId);
   }
 
-  @Get()
-  findAll() {
-    return this.todoService.findAll();
+  @Get(':id')
+  findAll(@Param('id') id: string) {
+    return this.todoService.findAll(+id);
   }
 
   @Get(':id')

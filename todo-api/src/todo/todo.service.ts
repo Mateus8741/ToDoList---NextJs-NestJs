@@ -17,19 +17,10 @@ export class TodoService {
     });
   }
 
-  findAll() {
+  findAll(userId: number) {
     return this.prisma.toDo.findMany({
-      select: {
-        id: true,
-        title: true,
-        status: true,
-        createdAt: true,
-        user: {
-          select: {
-            id: true,
-            name: true,
-          },
-        },
+      where: {
+        userId,
       },
     });
   }
