@@ -37,23 +37,19 @@ export class TodoService {
       ...updateTodoDto,
     };
 
-    this.prisma.toDo.update({
+    return this.prisma.toDo.update({
       where: {
         id,
       },
       data,
     });
-
-    return `Todo ${updateTodoDto.title} updated successfully`;
   }
 
   remove(id: number) {
-    this.prisma.toDo.delete({
+    return this.prisma.toDo.delete({
       where: {
         id,
       },
     });
-
-    return `Todo has deleted successfully`;
   }
 }
