@@ -1,4 +1,1 @@
-export class Todo {
-  title: string;
-  status: boolean;
-}
+export class Todo {}
